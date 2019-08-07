@@ -39,14 +39,25 @@ int sensorM3INPUT = A3;
 //jaja
 void setup()
 {
+Serial.begin(9600);
 
 pinMode(LPWMPuenteHOutput, OUTPUT);
 pinMode(RPWMPuenteHOutput, OUTPUT);
 pinMode(comunicacionArdOutput, OUTPUT);
 pinMode(comunicacionNexOutput, OUTPUT);
+pinMode(relay1Output, OUTPUT);
+pinMode(relay2Output, OUTPUT);
+pinMode(relay3Output, OUTPUT);
+pinMode(relay4Output, OUTPUT);
+pinMode(sensorM2INPUT, INPUT);
+pinMode(sensorM3INPUT, INPUT);
+
+
 }
 
 void loop()
 {
+
+
 
 }
