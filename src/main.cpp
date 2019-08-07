@@ -34,9 +34,7 @@ int relay3Output = 11;
 int relay4Output = 12;
 int sensorM2INPUT = A2;
 int sensorM3INPUT = A3;
-
-//NUEVO
-//jaja
+//nuevoa
 void setup()
 {
 Serial.begin(9600);
