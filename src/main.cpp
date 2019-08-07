@@ -89,5 +89,8 @@ void metodoEncenderM1(){
 }
 
 void apagarMotores(){
-    digitalWrite()
+    digitalWrite(relay1Output, LOW);
+    digitalWrite(relay2Output, LOW);
+    digitalWrite(relay3Output, LOW);
+    digitalWrite(relay4Output, LOW);
 }
