@@ -36,8 +36,6 @@ int sensorM2INPUT = A2;
 int sensorM3INPUT = A3;
 
 
-
-
 void setup()
 {
 
