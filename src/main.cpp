@@ -36,13 +36,14 @@ int sensorM2INPUT = A2;
 int sensorM3INPUT = A3;
 
 //NUEVO
+//jaja
 void setup()
 {
 
 pinMode(LPWMPuenteHOutput, OUTPUT);
 pinMode(RPWMPuenteHOutput, OUTPUT);
 pinMode(comunicacionArdOutput, OUTPUT);
-
+pinMode(comunicacionNexOutput, OUTPUT);
 }
 
 void loop()
