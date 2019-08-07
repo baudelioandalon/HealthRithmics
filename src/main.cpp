@@ -97,3 +97,17 @@ void apagarMotores(){
     digitalWrite(relay4Output, LOW);
     delay(100);
 }
+
+void comunicarArduinoToArduino(){
+  digitalWrite(conexionNexOutput, LOW);
+  delay(50);
+  digitalWrite(conexionArdOutput, HIGH);
+
+}
+
+void comunicarArduinoToNextion(){
+  digitalWrite(conexionArdOutput, LOW);
+  delay(50);
+  digitalWrite(conexionNexOutput, HIGH);
+
+}
