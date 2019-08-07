@@ -26,8 +26,8 @@
 
 int LPWMPuenteHOutput = 5;
 int RPWMPuenteHOutput = 6;
-int comunicacionArdOutput = 7;
-int comunicacionNexOutput = 8;
+int conexionArdOutput = 7;
+int conexionNexOutput = 8;
 int relay1Output = 9;
 int relay2Output = 10;
 int relay3Output = 11;
@@ -41,8 +41,8 @@ Serial.begin(9600);
 
 pinMode(LPWMPuenteHOutput, OUTPUT);
 pinMode(RPWMPuenteHOutput, OUTPUT);
-pinMode(comunicacionArdOutput, OUTPUT);
-pinMode(comunicacionNexOutput, OUTPUT);
+pinMode(conexionArdOutput, OUTPUT);
+pinMode(conexionNexOutput, OUTPUT);
 pinMode(relay1Output, OUTPUT);
 pinMode(relay2Output, OUTPUT);
 pinMode(relay3Output, OUTPUT);
