@@ -35,7 +35,7 @@ int relay4Output = 12;
 int sensorM2INPUT = A2;
 int sensorM3INPUT = A3;
 
-
+//NUEVO
 void setup()
 {
 
