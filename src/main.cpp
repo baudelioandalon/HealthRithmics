@@ -62,6 +62,7 @@ void loop()
 
 void metodoEncenderM1(){
 //Orden = 1 OFF + 2 ON + 3 OFF + 4 OFF (VERIFICADO)
+    apagarMotores();
     digitalWrite(relay1Output, LOW);
     digitalWrite(relay2Output, HIGH);
     digitalWrite(relay3Output, LOW);
@@ -71,7 +72,7 @@ void metodoEncenderM1(){
 
 void metodoEncenderM2(){
 //Orden = 1 ON + 2 OFF + 3 OFF + 4 OFF (VERIFICADO)
-
+    apagarMotores();
     digitalWrite(relay1Output, HIGH);
     digitalWrite(relay2Output, LOW);
     digitalWrite(relay3Output, LOW);
@@ -82,6 +83,7 @@ void metodoEncenderM2(){
 void metodoEncenderM3(){
 //METODO PARA ENCENDER M3
 //Orden = 1 OFF + 2 OFF + 3 ON + 4 ON (VERIFICADO)
+    apagarMotores();
     digitalWrite(relay1Output, LOW);
     digitalWrite(relay2Output, LOW);
     digitalWrite(relay3Output, HIGH);
@@ -93,4 +95,5 @@ void apagarMotores(){
     digitalWrite(relay2Output, LOW);
     digitalWrite(relay3Output, LOW);
     digitalWrite(relay4Output, LOW);
+    delay(100);
 }
