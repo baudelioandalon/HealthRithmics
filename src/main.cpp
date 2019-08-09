@@ -1,4 +1,6 @@
 #include <Arduino.h>
+#include "Nextion.h"
+
 ////////////////////////////////////////////
 ////////////////////////////////////////////
 ////VARIABLES PARA NANO TWO (PRINCIPAL)//
@@ -60,6 +62,14 @@ void loop()
 
 }
 
+void apagarMotores(){
+    digitalWrite(relay1Output, LOW);
+    digitalWrite(relay2Output, LOW);
+    digitalWrite(relay3Output, LOW);
+    digitalWrite(relay4Output, LOW);
+    delay(100);
+}
+
 void metodoEncenderM1(){
 //Orden = 1 OFF + 2 ON + 3 OFF + 4 OFF (VERIFICADO)
     apagarMotores();
@@ -90,13 +100,7 @@ void metodoEncenderM3(){
     digitalWrite(relay4Output, HIGH);
 }
 
-void apagarMotores(){
-    digitalWrite(relay1Output, LOW);
-    digitalWrite(relay2Output, LOW);
-    digitalWrite(relay3Output, LOW);
-    digitalWrite(relay4Output, LOW);
-    delay(100);
-}
+
 
 void comunicarArduinoToArduino(){
   digitalWrite(conexionNexOutput, LOW);
