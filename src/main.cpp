@@ -45,6 +45,8 @@ NexNumber txtMov1 = NexNumber(0, 6, "txtMov1");
 NexNumber txtMov2 = NexNumber(0, 7, "txtMov2");
 NexNumber txtMov3 = NexNumber(0, 8, "txtMov3");
 
+
+
 NexTouch *nex_listen_list[] = 
 {
     &SliderMov1,&SliderMov2,&SliderMov3,&txtMov1,&txtMov2,&txtMov3,
@@ -80,7 +82,11 @@ void SliderMov3PopCallback(void *ptr)
 void setup()
 {
 
-//
+//Inicializar NEXTION
+nexInit();
+SliderMov1.attachPop(SliderMov1PopCallback, &SliderMov1);
+SliderMov2.attachPop(SliderMov2PopCallback, &SliderMov2);
+SliderMov3.attachPop(SliderMov3PopCallback, &SliderMov3);
   
 Serial.begin(9600);
 pinMode(LPWMPuenteHOutput, OUTPUT);
