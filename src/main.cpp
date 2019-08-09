@@ -37,19 +37,24 @@ int relay4Output = 12;
 int sensorM2INPUT = A2;
 int sensorM3INPUT = A3;
 
+NexPage INICIO    = NexPage(0, 0, "INICIO");
+NexPage CALIBRANDO    = NexPage(0, 0, "CALIBRANDO");
 
 NexSlider SliderMov1 = NexSlider(0, 3, "SliderMov1"); //Page , ID, ObjName
 NexSlider SliderMov2 = NexSlider(0, 4, "SliderMov2"); //Page , ID, ObjName
 NexSlider SliderMov3 = NexSlider(0, 5, "SliderMov3"); //Page , ID, ObjName
-NexNumber txtMov1 = NexNumber(0, 6, "txtMov1");
-NexNumber txtMov2 = NexNumber(0, 7, "txtMov2");
-NexNumber txtMov3 = NexNumber(0, 8, "txtMov3");
+
+NexText txtMov1 = NexText(0, 6, "txtMov1");
+NexText txtMov2 = NexText(0, 7, "txtMov2");
+NexText txtMov3 = NexText(0, 8, "txtMov3");
+
+NexButton btnIniciar = NexButton(0, 2, "btnIniciar");
 
 
 
 NexTouch *nex_listen_list[] = 
 {
-    &SliderMov1,&SliderMov2,&SliderMov3,&txtMov1,&txtMov2,&txtMov3,
+    &SliderMov1,&SliderMov2,&SliderMov3,&btnIniciar,
     NULL
 };
 
@@ -79,6 +84,13 @@ void SliderMov3PopCallback(void *ptr)
     utoa(number, temp, 10);
     txtMov3.setText(temp);
 }
+
+void btnIniciarPopCallback(void *ptr)
+{
+    CALIBRANDO.show();
+    
+}
+
 void setup()
 {
 
@@ -87,6 +99,7 @@ nexInit();
 SliderMov1.attachPop(SliderMov1PopCallback, &SliderMov1);
 SliderMov2.attachPop(SliderMov2PopCallback, &SliderMov2);
 SliderMov3.attachPop(SliderMov3PopCallback, &SliderMov3);
+btnIniciar.attachPop(btnIniciarPopCallback, &btnIniciar);
   
 Serial.begin(9600);
 pinMode(LPWMPuenteHOutput, OUTPUT);
@@ -99,7 +112,6 @@ pinMode(relay3Output, OUTPUT);
 pinMode(relay4Output, OUTPUT);
 pinMode(sensorM2INPUT, INPUT);
 pinMode(sensorM3INPUT, INPUT);
-
 
 }
 
