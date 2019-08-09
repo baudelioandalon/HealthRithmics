@@ -39,6 +39,9 @@ int sensorM3INPUT = A3;
 
 //VARIABLES NEXTION
 String restan = "Restan";
+int CantidadMov1 = 0;
+int CantidadMov2 = 0;
+int CantidadMov3 = 0;
 
 NexPage INICIO    = NexPage(0, 0, "INICIO");
 NexPage CALIBRANDO    = NexPage(1, 0, "CALIBRANDO");
@@ -81,6 +84,7 @@ void SliderMov1PopCallback(void *ptr)
     SliderMov1.getValue(&number);
     utoa(number, temp, 10);
     txtMov1.setText(temp);
+    CantidadMov1 = number;
 }
 
 void SliderMov2PopCallback(void *ptr)
@@ -90,6 +94,7 @@ void SliderMov2PopCallback(void *ptr)
     SliderMov2.getValue(&number);
     utoa(number, temp, 10);
     txtMov2.setText(temp);
+    CantidadMov2 = number;
 }
 
 void SliderMov3PopCallback(void *ptr)
@@ -99,13 +104,15 @@ void SliderMov3PopCallback(void *ptr)
     SliderMov3.getValue(&number);
     utoa(number, temp, 10);
     txtMov3.setText(temp);
+    CantidadMov3 = number;
 }
 
 void btnIniciarPopCallback(void *ptr)
 {
     // CALIBRANDO.show();
+     MOVIENDO.show();
     sendMovimientosToNextion();
-    MOVIENDO.show();
+   
 }
 
 void btnComenzarPopCallback(void *ptr)
@@ -151,7 +158,7 @@ nexLoop(nex_listen_list);
 
 void sendMovimientosToNextion()
 {
- String command = "Mov1EnCurso.txt=\""+restan+"\"";
+ String command = "Mov1EnCurso.txt=\""+restan+" "+String(CantidadMov1)+"\"";
   Serial.print(command);
   endNextionCommand();
 }
