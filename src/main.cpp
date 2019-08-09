@@ -37,10 +37,52 @@ int relay4Output = 12;
 int sensorM2INPUT = A2;
 int sensorM3INPUT = A3;
 
+
+NexSlider SliderMov1 = NexSlider(0, 3, "SliderMov1"); //Page , ID, ObjName
+NexSlider SliderMov2 = NexSlider(0, 4, "SliderMov2"); //Page , ID, ObjName
+NexSlider SliderMov3 = NexSlider(0, 5, "SliderMov3"); //Page , ID, ObjName
+NexNumber txtMov1 = NexNumber(0, 6, "txtMov1");
+NexNumber txtMov2 = NexNumber(0, 7, "txtMov2");
+NexNumber txtMov3 = NexNumber(0, 8, "txtMov3");
+
+NexTouch *nex_listen_list[] = 
+{
+    &SliderMov1,&SliderMov2,&SliderMov3,&txtMov1,&txtMov2,&txtMov3,
+    NULL
+};
+
+void SliderMov1PopCallback(void *ptr)
+{
+    uint32_t number = 0;
+    char temp[10] = {0};
+    SliderMov1.getValue(&number);
+    utoa(number, temp, 10);
+    txtMov1.setText(temp);
+}
+
+void SliderMov2PopCallback(void *ptr)
+{
+    uint32_t number = 0;
+    char temp[10] = {0};
+    SliderMov2.getValue(&number);
+    utoa(number, temp, 10);
+    txtMov2.setText(temp);
+}
+
+void SliderMov3PopCallback(void *ptr)
+{
+    uint32_t number = 0;
+    char temp[10] = {0};
+    SliderMov3.getValue(&number);
+    utoa(number, temp, 10);
+    txtMov3.setText(temp);
+}
 void setup()
 {
-Serial.begin(9600);
 
+//
+  
+Serial.begin(9600);
 pinMode(LPWMPuenteHOutput, OUTPUT);
 pinMode(RPWMPuenteHOutput, OUTPUT);
 pinMode(conexionArdOutput, OUTPUT);
@@ -58,7 +100,7 @@ pinMode(sensorM3INPUT, INPUT);
 void loop()
 {
 
-
+nexLoop(nex_listen_list);
 
 }
 
