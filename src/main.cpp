@@ -37,8 +37,12 @@ int relay4Output = 12;
 int sensorM2INPUT = A2;
 int sensorM3INPUT = A3;
 
+//VARIABLES NEXTION
+String restan = "Restan";
+
 NexPage INICIO    = NexPage(0, 0, "INICIO");
-NexPage CALIBRANDO    = NexPage(0, 0, "CALIBRANDO");
+NexPage CALIBRANDO    = NexPage(1, 0, "CALIBRANDO");
+NexPage MOVIENDO    = NexPage(2, 0, "MOVIENDO");
 
 NexSlider SliderMov1 = NexSlider(0, 3, "SliderMov1"); //Page , ID, ObjName
 NexSlider SliderMov2 = NexSlider(0, 4, "SliderMov2"); //Page , ID, ObjName
@@ -50,11 +54,23 @@ NexText txtMov3 = NexText(0, 8, "txtMov3");
 
 NexButton btnIniciar = NexButton(0, 2, "btnIniciar");
 
+NexButton CheckMov1 = NexButton(2, 3, "CheckMov1");
+NexButton CheckMov2 = NexButton(2, 4, "CheckMov2");
+NexButton CheckMov3 = NexButton(2, 5, "CheckMov3");
 
+NexText Mov1EnCurso = NexText(2, 6, "Mov1EnCurso");
+NexText Mov2EnCurso = NexText(2, 7, "Mov2EnCurso");
+NexText Mov3EnCurso = NexText(2, 8, "Mov3EnCurso");
+
+NexButton btnComenzar = NexButton(2, 2, "btnComenzar");
+NexButton btnRegresar = NexButton(2, 9, "btnRegresar");
 
 NexTouch *nex_listen_list[] = 
 {
-    &SliderMov1,&SliderMov2,&SliderMov3,&btnIniciar,
+    &INICIO,&CALIBRANDO,&MOVIENDO,//Paginas
+    &SliderMov1,&SliderMov2,&SliderMov3,&btnIniciar,//Elementos PAGE 0
+    &CheckMov1,&CheckMov2,&CheckMov3,&Mov1EnCurso,&Mov2EnCurso,//Elementos PAGE 2
+    &Mov3EnCurso,&btnComenzar,&btnRegresar, //Elementos PAGE 2
     NULL
 };
 
@@ -87,19 +103,30 @@ void SliderMov3PopCallback(void *ptr)
 
 void btnIniciarPopCallback(void *ptr)
 {
-    CALIBRANDO.show();
-    
+    // CALIBRANDO.show();
+    sendMovimientosToNextion();
+    MOVIENDO.show();
 }
 
+void btnComenzarPopCallback(void *ptr)
+{
+    //En¨Progreso
+}
+
+void btnRegresarPopCallback(void *ptr)
+{
+    //En¨Progreso
+}
 void setup()
 {
-
 //Inicializar NEXTION
 nexInit();
 SliderMov1.attachPop(SliderMov1PopCallback, &SliderMov1);
 SliderMov2.attachPop(SliderMov2PopCallback, &SliderMov2);
 SliderMov3.attachPop(SliderMov3PopCallback, &SliderMov3);
 btnIniciar.attachPop(btnIniciarPopCallback, &btnIniciar);
+btnRegresar.attachPop(btnRegresarPopCallback, &btnRegresar);
+btnComenzar.attachPop(btnComenzarPopCallback, &btnComenzar);
   
 Serial.begin(9600);
 pinMode(LPWMPuenteHOutput, OUTPUT);
@@ -120,6 +147,20 @@ void loop()
 
 nexLoop(nex_listen_list);
 
+}
+
+void sendMovimientosToNextion()
+{
+ String command = "Mov1EnCurso.txt=\""+restan+"\"";
+  Serial.print(command);
+  endNextionCommand();
+}
+
+void endNextionCommand()
+{
+  Serial.write(0xff);
+  Serial.write(0xff);
+  Serial.write(0xff);
 }
 
 void apagarMotores(){
